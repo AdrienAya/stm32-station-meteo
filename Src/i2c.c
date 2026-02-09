@@ -11,7 +11,7 @@ void I2C_Init(void){
 	RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
 
 	I2C1->CR2 = 45;
-	I2C1->CR1 = 225;
+	I2C1->CRR = 225;
 	I2C1->TRISE = 46;
 	I2C1->CR1 |= I2C_CR1_PE;
 	I2C1->CR1 |= I2C_CR1_ACK;
@@ -29,7 +29,6 @@ void I2C_Start(void){
 
 void I2C_Write_Addr(uint8_t addr){
 
-	while (I2C1->SR2 & I2C_SR2_BUSY);
 
 	I2C1->DR = addr;
 
